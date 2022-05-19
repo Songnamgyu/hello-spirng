@@ -22,21 +22,13 @@ public class MemberService {
     * 회원 가입
     * */
     public long join(Member member) {
-        //메소드 시간측정을 위한 변수선언
-        long start = System.currentTimeMillis();
-
 
         // 같은 이름이 있는 중복회원 X
         // ctrl + alt + v
-      try {
+
           validateDuplicateMember(member); // 중복회원 검색
           memberRepository.save(member);
           return member.getId();
-      }finally {
-          long finish = System.currentTimeMillis();
-          long timeMs = finish - start;
-          System.out.println("join  :::: " + timeMs + "ms");
-      }
 
     }
 
@@ -56,13 +48,9 @@ public class MemberService {
      */
     public List<Member> findMembers() {
         long start = System.currentTimeMillis();
-        try {
+
             return memberRepository.findAll();
-        }finally {
-            long finish = System.currentTimeMillis();
-            long timeMs = finish - start;
-            System.out.println("findMembers :::" + timeMs + "ms");
-        }
+
 
     }
 
